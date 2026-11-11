@@ -863,7 +863,7 @@ async function loadProducts(){
 try{
 if(!window.supabase?.createClient)throw new Error("Supabase library unavailable");
 db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-const result=await db.from("products") .select("id,title,category,price,old_price,image_url,stock_status") .order("id",{ascending:false}) .limit(40);
+const result=await db.from("products") .select("id,title,category,price,image_url,stock_status") .order("id",{ascending:false}) .limit(40);
 if(result.error)throw result.error;
 products=Array.isArray(result.data)?result.data.filter(p=>p&&p.id!==undefined):[];
 renderProducts();
